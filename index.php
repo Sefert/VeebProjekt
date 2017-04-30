@@ -13,10 +13,10 @@ if (isset($_GET['page']) && $_GET['page']!=""){
 
 switch($page){
     case "lisa":
-        include("lisa.html");
+        include("lisa.php");
         break;
     default:
-        include('galerii.html');
+        include('galerii.php');
 }
 require_once("menu.html");
 require_once("bottom.html");
