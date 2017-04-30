@@ -16,16 +16,15 @@ class Database {
     private $password;
     private $email;
     private $connection;
-    private $data;
+    private $data=array();
 
-    public function __construct($get){
-        $this->firstname=$get['forname'];
-        $this->lastname=$get['surname'];
-        $this->password=$get['password'];
-        $this->email=$get['mail'];
-        if (!empty($get('forname'))){
+    public function _setReg($f,$l,$p,$m){
+        $this->firstname=$f;
+        $this->lastname=$l;
+        $this->password=$p;
+        $this->email=$m;
+        if (isset($f))
             $this->register();
-        }
     }
     public function _getData(){
         $this->read();
@@ -36,41 +35,52 @@ class Database {
             $connection = mysqli_connect($this->host, $this->user, $this->pass, $this->db);
             $this->connection=$connection;
             try {
-                mysqli_query($connection, "SET CHARACTER SET UTF8");
+                mysqli_query($this->connection, "SET CHARACTER SET UTF8");
             } catch (Exception $e){
-                die("Ei saanud baasi utf-8-sse - " . mysqli_error($connection));
+                die("Ei saanud baasi utf-8-sse - " . mysqli_error($this->connection));
             }
         } catch (Exception $e){
             die("Ei saa ühendust mootoriga");
         }
     }
     private function _disconnect() {
-        mysqli_close($this->connection());
+        mysqli_close($this->connection);
         $this->connection=null;
     }
     private function register()
     {
         $this->_connect();
         try {
-            $sql = "INSERT INTO Markmosk_kasutaja (Eesnimi, Perenimi, Parool, Epost) VALUES ($this->firstname, $this->lastname, $this->password, $this->email)";
-            $this->connection->exec($sql);
-            echo "New record created successfully";
+
+            $sql = "INSERT INTO Markmosk_kasutaja (Eesnimi, Perenimi, Parool, Epost) VALUES ('$this->firstname', '$this->lastname', '$this->password','$this->email')";
+            if (mysqli_query($this->connection, $sql)) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($this->connection);
+            }
+
         } catch (Exception $e) {
-            echo $sql . "<br>" . $e->getMessage();
+            echo $sql . "<br>" . $e;
         }
         $this->_disconnect();
     }
     private function read(){
         $this->_connect();
-        $sql = "SELECT * FROM Markmosk_kasutaja";
-        $result = $this->connection->query($sql);
-
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                $this->data= "id: " . $row["id"]. " - Nimi: " . $row["Eesnimi"]. " " . $row["Perenimi"]." Parool: " . $row["Parool"] . "  Email: " . $row["Epost"] . "<br>";
-            }
-        } else {
-            echo "0 results";
+        $sql = "SELECT * FROM Markmosk_kasutaja ORDER BY Perenimi ASC";
+        $result = mysqli_query($this->connection, $sql);
+        //$this->data=mysqli_fetch_assoc($result);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $this->data[] = $row;
         }
+        //$result = $this->connection->query($sql);
+
+//        if ($result->num_rows > 0) {
+//            while($row = $result->fetch_assoc()) {
+//                $this->data= "id: " . $row["id"]. " - Nimi: " . $row["Eesnimi"]. " " . $row["Perenimi"]." Parool: " . $row["Parool"] . "  Email: " . $row["Epost"] . "<br>";
+//            }
+//        } else {
+//            echo "0 results";
+//        }
+
     }
 }
