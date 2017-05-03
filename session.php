@@ -16,17 +16,17 @@ if (!isset($_SESSION)){
     $_SESSION[0]=array();
 }
 if (isset($_GET)){
-    $_SESSION['firstname'][count($_SESSION)] = $_GET['forname'];
-    $_SESSION['lastname'][count($_SESSION)] = $_GET['surname'];
-    $_SESSION['email'][count($_SESSION)] = $_GET['mail'];
+    $_SESSION['firstname'][count($_SESSION)] = $_POST['forname'];
+    $_SESSION['lastname'][count($_SESSION)] = $_POST['surname'];
+    $_SESSION['email'][count($_SESSION)] = $_POST['mail'];
     //$_SESSION['addinfo'][count($_SESSION)] = $_GET['addinfo'];
     $_SESSION['time'][count($_SESSION)] = time();
-    $fname=$_GET['forname'];
+    $fname=$_POST['forname'];
     //echo $fname;
-    $lname=$_GET['surname'];
+    $lname=$_POST['surname'];
     //echo $lname;
-    $password=$_GET['password'];
-    $mail=$_GET['mail'];
+    $password=$_POST['password'];
+    $mail=$_POST['mail'];
     $register=new Database();
     $register->_setReg($fname,$lname,$password,$mail);
     //var_dump($register);

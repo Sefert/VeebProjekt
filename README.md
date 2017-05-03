@@ -13,3 +13,5 @@ CREATE TABLE Markmosk_kasutaja (<br />
 &nbsp;&nbsp;&nbsp;Epost varchar(40) UNIQUE not null,<br />
 &nbsp;&nbsp;&nbsp;Reg_date TIMESTAMP);<br />
 Parandused andmebaasis ja toimiv connection. 
+/30.04.2016/<br />
+Üleminek POST meetodile/Login-registreering süsteem<br />

@@ -30,6 +30,14 @@ class Database {
         $this->read();
         return $this->data;
     }
+    public function _setIdentify($m, $p){
+        $this->email=$m;
+        $this->password=$p;
+    }
+    public function _getIdentify(){
+        $this->identify();
+        return $this->data;
+    }
     private function _connect(){
         try {
             $connection = mysqli_connect($this->host, $this->user, $this->pass, $this->db);
@@ -81,6 +89,14 @@ class Database {
 //        } else {
 //            echo "0 results";
 //        }
-
+        $this->_disconnect();
+    }
+    private function identify(){
+        $this->_connect();
+        $sql = "SELECT Eesnimi, Perenimi FROM Markmosk_kasutaja WHERE Epost='$this->email' AND Parool='$this->password'";
+        $result = mysqli_query($this->connection, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $this->data=$row;
+        $this->_disconnect();
     }
 }

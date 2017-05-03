@@ -1,6 +1,11 @@
+$(document).ready(function(){
+    $("#slide").click(function(){
+        $(".hide").slideDown("slow").css('zoom', 1);
+        $("#slide").hide();
+    });
+});
 window.onload = function () {
-    if (window.location.href.match('lisa.php') !== null) {
-        var div = document.getElementsByClassName("mid");
+    if (window.location.href.match('index.php') !== null) {
     }
     ;
     /**

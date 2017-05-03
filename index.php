@@ -11,8 +11,9 @@ if (!isset($page))
 if (isset($_GET['page']) && $_GET['page']!=""){
     $page=htmlspecialchars($_GET['page']);
 }
-if (isset($_GET['switch'])){
-    $page = $_GET['switch'];
+if (isset($_POST['Login']) || isset($_POST['Register'])){
+    $page = $_POST['switch'];
+    //var_dump($_POST);
 }
 switch($page){
     case "lisa":
