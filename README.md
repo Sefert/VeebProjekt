@@ -1,4 +1,4 @@
-Projekt testimiseks : <a style='color blue;' href=http://enos.itcollege.ee/~mmozniko/>http://enos.itcollege.ee/~mmozniko/</a><br />
+Projekt testimiseks : <a style='color blue;' href=http://enos.itcollege.ee/~mmozniko/index.php>http://enos.itcollege.ee/~mmozniko/</a><br />
 /15.04.2016/<br />
 MVC variandiga fotogalerii algus.<br />
 /30.04.2016/<br />
