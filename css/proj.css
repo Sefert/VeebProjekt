@@ -117,6 +117,28 @@ a:hover{
     padding: -50px;
     display: none;
 }
-#slide{
-
+#move{
+     width: 355px;
+ }
+.mirror{
+    display:block;
+    margin:auto;
+    -moz-transform: scale(1,-1);
+    -o-transform: scale(1,-1);
+    -webkit-transform: scale(1,-1);
+    transform:scale(1,-1);
+    opacity:0.2;
+    margin-top:-1px;
+}
+#left{
+    margin-top: 250px;
+    margin-left: 80px;
+    height: 200px;
+    float: left;
+}
+#right{
+    margin-top: 250px;
+    margin-right: 80px;
+    height: 200px;
+    float: right;
 }

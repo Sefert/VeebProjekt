@@ -27,5 +27,5 @@ switch($page){
     default:
         include('galerii.php');
 }
-require_once("menu.html");
+require_once("menu.php");
 require_once("bottom.html");

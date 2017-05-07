@@ -28,7 +28,7 @@
       var_dump($data);
     }
 ?>
-<div class="center mid lisa">
+<div id="move" class="center mid lisa">
     <form class="fpos" action="index.php" method="POST">
         <div>
             <input type="hidden" name="switch" value="lisa">
@@ -45,7 +45,7 @@
             <span <?php if (isset($_POST["Register"])) echo 'class="hide"' ?> >
                 <button id="slide" class="button noborder" type="button">REGISTREERI</button>
             </span>
-            <?php if(isset($prompt)){echo "<p class='noborder' style='color: white'>".$prompt."</p>";}?>
+            <?php if(isset($prompt)){echo "<p class='noborder' style='color: white; letter-spacing: normal; font-size: 100%;'>".$prompt."</p>";}?>
         </div>
     </form>
 </div>

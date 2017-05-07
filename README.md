@@ -15,3 +15,5 @@ CREATE TABLE Markmosk_kasutaja (<br />
 Parandused andmebaasis ja toimiv connection. 
 /30.04.2016/<br />
 Üleminek POST meetodile/Login-registreering süsteem<br />
+/07.05.2016/<br />
+Pildilehitseja süsteem, sisse logimine<br />

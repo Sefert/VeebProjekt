@@ -3,7 +3,7 @@
         <div class="div"></div>
         <div class="headerdiv"><li><a href="?">GALERII</a></li></div>
         <div class="div"></div>
-        <div class="headerdiv"><li><a href="?page=lisa">LOGIN</a></li></div>
+        <div class="headerdiv"><li><a href="?page=lisa">LOGIN</a></li></div> <!--href="?page=lisa" -->
         <div class="div"></div>
         <div class="headerdiv"><li><a href="?page=loend">LOEND</a></li></div>
     </ul>
