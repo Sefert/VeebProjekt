@@ -24,12 +24,12 @@ function subtract(i) {
     var variableToSend = parseInt(i)-1;
     console.log(i);
     // $.post('galerii.php', {i: variableToSend});
-    document.location = 'http://enos.itcollege.ee/~mmozniko/test/index.php?addim='+variableToSend;
+    document.location = 'http://enos.itcollege.ee/~mmozniko/index.php?addim='+variableToSend;
 }
 function add(i) {
     console.log("right");
     var variableToSend = parseInt(i)+1;
     console.log(i);
     // $.post('galerii.php', {i: variableToSend});
-    document.location = 'http://enos.itcollege.ee/~mmozniko/test/index.php?addim='+variableToSend;
+    document.location = 'http://enos.itcollege.ee/~mmozniko/index.php?addim='+variableToSend;
 }

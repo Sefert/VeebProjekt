@@ -21,12 +21,12 @@ if (isset($_GET)){
     $_SESSION['email'][count($_SESSION)] = $_POST['mail'];
     //$_SESSION['addinfo'][count($_SESSION)] = $_GET['addinfo'];
     $_SESSION['time'][count($_SESSION)] = time();
-    $fname=$_POST['forname'];
+    $fname=htmlspecialchars($_POST['forname']);
     //echo $fname;
-    $lname=$_POST['surname'];
+    $lname=htmlspecialchars($_POST['surname']);
     //echo $lname;
-    $password=$_POST['password'];
-    $mail=$_POST['mail'];
+    $password=htmlspecialchars($_POST['password']);
+    $mail=htmlspecialchars($_POST['mail']);
     $register=new Database();
     $register->_setReg($fname,$lname,$password,$mail);
     //var_dump($register);

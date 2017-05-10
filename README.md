@@ -17,3 +17,5 @@ Parandused andmebaasis ja toimiv connection.
 Üleminek POST meetodile/Login-registreering süsteem<br />
 /07.05.2016/<br />
 Pildilehitseja süsteem, sisse logimine<br />
+/10.05.2016/<br />
+Parandatud pildilehitseja süsteem, SHA1 ja MD5, mitte toimiv kasutaja privaatse kataloogi genereerimine<br />

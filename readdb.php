@@ -15,7 +15,7 @@
     create_table($data);
 //
 function create_table(array $dataArr) {
-    $html = '<table style="color: white">';
+    $html = '<table style="color: white;font-size: 11px">';
     $html .= '<tr>';
     foreach($dataArr[0] as $key=>$value){
         $html .= '<th>' . htmlspecialchars($key) . '</th>';

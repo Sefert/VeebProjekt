@@ -16,6 +16,7 @@ class Database {
     private $password;
     private $email;
     private $connection;
+    private $kataloog;
     private $data=array();
 
     public function _setReg($f,$l,$p,$m){
@@ -60,7 +61,7 @@ class Database {
         $this->_connect();
         try {
 
-            $sql = "INSERT INTO Markmosk_kasutaja (Eesnimi, Perenimi, Parool, Epost) VALUES ('$this->firstname', '$this->lastname', '$this->password','$this->email')";
+            $sql = "INSERT INTO Markmosk_kasutaja (Eesnimi, Perenimi, Parool, Epost, Kataloog) VALUES ('$this->firstname', '$this->lastname', SHA1('$this->password'),'$this->email',MD5('$this->email'))";
             if (mysqli_query($this->connection, $sql)) {
                 echo "New record created successfully";
             } else {
@@ -70,6 +71,7 @@ class Database {
         } catch (Exception $e) {
             echo $sql . "<br>" . $e;
         }
+        $this->createFolder();
         $this->_disconnect();
     }
     private function read(){
@@ -98,5 +100,10 @@ class Database {
         $row = mysqli_fetch_assoc($result);
         $this->data=$row;
         $this->_disconnect();
+    }
+    private function createFolder(){
+        $sql = "SELECT Kataloog FROM Markmosk_kasutaja WHERE Email='$this->email'";
+        $result = mysqli_query($this->connection, $sql);
+        mkdir('img/galerii/'.$result,0666, true);
     }
 }
