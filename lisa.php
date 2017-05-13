@@ -4,14 +4,23 @@
             $prompt = "Kõikide väljade täitmine on kohustuslik!!";
         } else {
             if (preg_match("%@%",$_POST["mail"])) {
-                if (strlen($_POST["password"]) <= 5) {
-                    $prompt = "Sisestatud paroolid on liiga lühikesed!!";
+                require_once ("db/Database.php");
+                $data = new Database();
+                $data->_setMail($_POST["mail"]);
+                $data=$data->_getMailBool();
+                print_r($data);
+                if ($data){
+                    $prompt = "Antud e-post on juba kasutusel!!";
                 } else {
-                    if ($_POST["password"] != $_POST["password2"]) {
-                        $prompt = "Sisestatud paroolid ei kattu!!";
+                    if (strlen($_POST["password"]) <= 5) {
+                        $prompt = "Sisestatud paroolid on liiga lühikesed!!";
                     } else {
-                        $prompt = "Registreeritud!";
-                        require ('session.php');
+                        if ($_POST["password"] != $_POST["password2"]) {
+                            $prompt = "Sisestatud paroolid ei kattu!!";
+                        } else {
+                            $prompt = "Registreeritud!";
+                            require('session.php');
+                        }
                     }
                 }
             } else {
@@ -20,13 +29,9 @@
         }
     }
     if (isset($_POST["Login"])) {
-      require_once ("db/Database.php");
-      $login= new Database();
-      $login->_setIdentify($_POST['mail'],$_POST['password']);
-      $data=$login->_getIdentify();
-      print_r($data);
-      var_dump($data);
+        require('session.php');
     }
+
 ?>
 <div id="move" class="center mid lisa">
     <form class="fpos" action="index.php" method="POST">

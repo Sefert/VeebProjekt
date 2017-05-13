@@ -16,7 +16,7 @@ class Database {
     private $password;
     private $email;
     private $connection;
-    private $kataloog;
+    private $kataloog, $bool;
     private $data=array();
 
     public function _setReg($f,$l,$p,$m){
@@ -24,8 +24,14 @@ class Database {
         $this->lastname=$l;
         $this->password=$p;
         $this->email=$m;
-        if (isset($f))
-            $this->register();
+        $this->register();
+    }
+    public function _setMail($m){
+        $this->email=$m;
+    }
+    public function _getFolder(){
+        $this->location();
+        return $this->kataloog;
     }
     public function _getData(){
         $this->read();
@@ -34,10 +40,14 @@ class Database {
     public function _setIdentify($m, $p){
         $this->email=$m;
         $this->password=$p;
+        $this->identify();
     }
     public function _getIdentify(){
-        $this->identify();
         return $this->data;
+    }
+    public function _getMailBool(){
+        $this->isMail();
+        return $this->bool;
     }
     private function _connect(){
         try {
@@ -60,7 +70,6 @@ class Database {
     {
         $this->_connect();
         try {
-
             $sql = "INSERT INTO Markmosk_kasutaja (Eesnimi, Perenimi, Parool, Epost, Kataloog) VALUES ('$this->firstname', '$this->lastname', SHA1('$this->password'),'$this->email',MD5('$this->email'))";
             if (mysqli_query($this->connection, $sql)) {
                 echo "New record created successfully";
@@ -95,15 +104,44 @@ class Database {
     }
     private function identify(){
         $this->_connect();
-        $sql = "SELECT Eesnimi, Perenimi FROM Markmosk_kasutaja WHERE Epost='$this->email' AND Parool='$this->password'";
+        $m=mysqli_real_escape_string($this->connection,$this->email);
+        $p=mysqli_real_escape_string($this->connection,SHA1($this->password));
+//        $sql=mysqli_prepare($this->connection,"SELECT Eesnimi, Perenimi, Kataloog FROM Markmosk_kasutaja WHERE Epost= ? AND Parool= ?");
+//        mysqli_stmt_bind_param($sql,"ss",$m,$p);
+//        mysqli_stmt_execute($sql);
+//        $r=array();
+//        mysqli_stmt_bind_result($sql,$r['fname'],$r['sname'],$r['folder']);
+//        $this->data=mysqli_stmt_fetch($sql);
+        $sql = "SELECT Eesnimi, Perenimi, Kataloog FROM Markmosk_kasutaja WHERE Epost='$m' AND Parool='$p'";
         $result = mysqli_query($this->connection, $sql);
         $row = mysqli_fetch_assoc($result);
         $this->data=$row;
         $this->_disconnect();
     }
     private function createFolder(){
-        $sql = "SELECT Kataloog FROM Markmosk_kasutaja WHERE Email='$this->email'";
-        $result = mysqli_query($this->connection, $sql);
-        mkdir('img/galerii/'.$result,0666, true);
+        $sql = "SELECT Kataloog FROM Markmosk_kasutaja WHERE Epost='$this->email'";
+        $result= mysqli_query($this->connection, $sql);
+        $row = mysqli_fetch_row($result);
+        mkdir('/home/mmozniko/public_html/img/galerii/'.$row[0],0777, true);
+ //       print_r($row);
+    }
+    private function location(){
+        $this->_connect();
+        $sql = "SELECT Kataloog FROM Markmosk_kasutaja WHERE Epost='$this->email'";
+        $result= mysqli_query($this->connection, $sql);
+        $row = mysqli_fetch_row($result);
+        $this->kataloog=$row[0];
+        $this->_disconnect();
+    }
+    private function isMail(){
+        $this->_connect();
+        $sql = "SELECT Epost FROM Markmosk_kasutaja WHERE Epost='$this->email'";
+        $result= mysqli_query($this->connection, $sql);
+        if ($result && mysqli_num_rows($result) > 0){
+            $this->bool=true;
+        } else {
+            $this->bool=false;
+        }
+        $this->_disconnect();
     }
 }

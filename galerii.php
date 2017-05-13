@@ -1,4 +1,5 @@
 <?php
+
 $directory = "img/galerii";
 
 ini_set('allow_url_fopen',1);
@@ -8,6 +9,7 @@ require_once ("Pictureloader.php");
 $files=new Pictureloader($directory);
 $files=$files->getPictures();
 //print_r($files);
+//echo dirname(__DIR__);
 $filecount=count($files);
 
 

@@ -12,10 +12,13 @@ CREATE TABLE Markmosk_kasutaja (<br />
 &nbsp;&nbsp;&nbsp;Parool varchar(16) not null, <br />
 &nbsp;&nbsp;&nbsp;Epost varchar(40) UNIQUE not null,<br />
 &nbsp;&nbsp;&nbsp;Reg_date TIMESTAMP);<br />
-Parandused andmebaasis ja toimiv connection. 
+Parandused andmebaasis ja toimiv connection. <br />
 /30.04.2016/<br />
 Üleminek POST meetodile/Login-registreering süsteem<br />
 /07.05.2016/<br />
 Pildilehitseja süsteem, sisse logimine<br />
 /10.05.2016/<br />
 Parandatud pildilehitseja süsteem, SHA1 ja MD5, mitte toimiv kasutaja privaatse kataloogi genereerimine<br />
+/13.05.2016/<br />
+probleemidega toimiv Login ja session <br />
+                                                                                                             
