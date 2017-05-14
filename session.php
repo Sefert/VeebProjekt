@@ -2,6 +2,7 @@
 if(!isset($_SESSION)){
     session_start();
 }
+
 //if (session_status() !== PHP_SESSION_ACTIVE) {
 //    session_start();
 //}
@@ -19,9 +20,10 @@ if (!isset($_COOKIE["galerii"])) {
         $folder = new Database();
         $folder->_setMail($mail);
         $folder = $folder->_getFolder();
-        $_SESSION[$_POST['forname'].$_POST['surname']]=array($_POST['forname'], $_POST['surname'], $_POST['mail'],$folder,time());
-        //var_dump($register);?lgin=galeriilogin
-        header("index.php");
+        $_SESSION[$mail]=array($fname, $lname, $mail,$folder,time(),time()+60);
+//        var_dump($register);
+//        if (isset($_SESSION[$mail]))
+//            header('http://enos.itcollege.ee/~mmozniko/test/index.php?page=galerii');
     } elseif (isset($_POST['Login'])){
         $password = htmlspecialchars($_POST['password']);
         $mail = htmlspecialchars($_POST['mail']);
@@ -33,8 +35,10 @@ if (!isset($_COOKIE["galerii"])) {
 //        echo $mail;
 //        foreach ($login as $key=>$value)
 //            print $key."=>".$value;
-        $_SESSION[$mail]=array($login['Eesnimi'], $login['Perenimi'], $mail, $login['Kataloog'], time());
-        header("index.php");
+        $_SESSION[$mail]=array($login['Eesnimi'], $login['Perenimi'], $mail, $login['Kataloog'], time(),time()+60);
+//        print_r($_SESSION[$mail]);
+//        if (isset($_SESSION[$mail]))
+//            header('http://enos.itcollege.ee/~mmozniko/test/index.php?page=galerii');
     }
 }
 

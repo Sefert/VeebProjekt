@@ -26,8 +26,9 @@ class Database {
         $this->email=$m;
         $this->register();
     }
-    public function _setMail($m){
+    public function _checkData($m,$p){
         $this->email=$m;
+        $this->password=$p;
     }
     public function _getFolder(){
         $this->location();
@@ -47,6 +48,10 @@ class Database {
     }
     public function _getMailBool(){
         $this->isMail();
+        return $this->bool;
+    }
+    public function _getcheckDataBool(){
+        $this->checkData();
         return $this->bool;
     }
     private function _connect(){
@@ -122,7 +127,8 @@ class Database {
         $sql = "SELECT Kataloog FROM Markmosk_kasutaja WHERE Epost='$this->email'";
         $result= mysqli_query($this->connection, $sql);
         $row = mysqli_fetch_row($result);
-        mkdir('/home/mmozniko/public_html/img/galerii/'.$row[0],0777, true);
+        mkdir('/home/mmozniko/public_html/img/galerii/'.$row[0] , 0777, true);
+        chmod('/home/mmozniko/public_html/img/galerii/'.$row[0] ,0777);
  //       print_r($row);
     }
     private function location(){
@@ -136,6 +142,19 @@ class Database {
     private function isMail(){
         $this->_connect();
         $sql = "SELECT Epost FROM Markmosk_kasutaja WHERE Epost='$this->email'";
+        $result= mysqli_query($this->connection, $sql);
+        if ($result && mysqli_num_rows($result) > 0){
+            $this->bool=true;
+        } else {
+            $this->bool=false;
+        }
+        $this->_disconnect();
+    }
+    private function checkData(){
+        $this->_connect();
+        $m=mysqli_real_escape_string($this->connection,$this->email);
+        $p=mysqli_real_escape_string($this->connection,SHA1($this->password));
+        $sql = "SELECT Epost FROM Markmosk_kasutaja WHERE Epost='$m' AND Parool='$p'";
         $result= mysqli_query($this->connection, $sql);
         if ($result && mysqli_num_rows($result) > 0){
             $this->bool=true;

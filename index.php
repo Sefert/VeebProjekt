@@ -5,6 +5,7 @@
  * Date: 15/04/2017
  * Time: 16:56
  */
+//echo phpinfo();
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
@@ -18,11 +19,23 @@ if (isset($_POST['Register']) || isset($_POST['Login'])){
     $page = $_POST['switch'];
     //var_dump($_POST);
 }
-if (isset($_COOKIE['galerii'])){
+if (isset($_COOKIE['galerii']) && !isset($_POST['Login'])){
     $session_id=$_COOKIE['galerii'];
-    print_r($session_id);
-    print_r($_SESSION[$session_id]);
-    $page="galeriilogin";
+//    print_r($session_id);
+//    print_r($_SESSION[$session_id]);
+    if (isset($_GET['page'])){
+        $page="login".$_GET['page'];
+    }
+}
+if (isset($_POST['UpPic'])){
+//    if (isset($_FILES['filetoupload'])) {
+        echo "SIIN";
+        require_once ("functions.php");
+        $prompt=uppic("filetoupload",$_COOKIE['galerii']);
+        foreach ($prompt as $value)
+            print $value;
+//        print_r($prompt);
+//    }
 }
 switch($page){
     case "lisa":
@@ -33,8 +46,14 @@ switch($page){
         include("readdb.php");
         $page="loend";
         break;
-    case "galeriilogin":
+    case "logingalerii":
         include('galerii.php');
+        break;
+    case "loginloend":
+        include("readdb.php");
+        break;
+    case "loginkasutaja":
+        include("lisapildid.php");
         break;
     default:
         include('galerii.php');

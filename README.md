@@ -21,4 +21,7 @@ Pildilehitseja süsteem, sisse logimine<br />
 Parandatud pildilehitseja süsteem, SHA1 ja MD5, mitte toimiv kasutaja privaatse kataloogi genereerimine<br />
 /13.05.2016/<br />
 probleemidega toimiv Login ja session <br />
+/13.05.2016/<br />
+Toimiv sessioon ja registreering, upload, login, kontrollid , galerii vatsavalt kasutajale<br />
+Bug:SIsse logimisel ja registreerimisel ei liiguta logimise lehelt ära, kuid kui ise liikuda, kõik ülejäänu toimib<br />
                                                                                                              

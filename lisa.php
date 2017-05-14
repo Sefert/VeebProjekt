@@ -6,9 +6,9 @@
             if (preg_match("%@%",$_POST["mail"])) {
                 require_once ("db/Database.php");
                 $data = new Database();
-                $data->_setMail($_POST["mail"]);
+                $data->_checkData(htmlspecialchars($_POST["mail"]),htmlspecialchars($_POST["password"]));
                 $data=$data->_getMailBool();
-                print_r($data);
+//                print_r($data);
                 if ($data){
                     $prompt = "Antud e-post on juba kasutusel!!";
                 } else {
@@ -19,7 +19,7 @@
                             $prompt = "Sisestatud paroolid ei kattu!!";
                         } else {
                             $prompt = "Registreeritud!";
-                            require('session.php');
+                            include('session.php');
                         }
                     }
                 }
@@ -29,7 +29,14 @@
         }
     }
     if (isset($_POST["Login"])) {
-        require('session.php');
+        require_once ("db/Database.php");
+        $data = new Database();
+        $data->_checkData(htmlspecialchars($_POST["mail"]),htmlspecialchars($_POST["password"]));
+        $data=$data->_getcheckDataBool();
+        if (!$data)
+            $prompt = "Kasutaja või parool vale!!";
+        else
+            include('session.php');
     }
 
 ?>
