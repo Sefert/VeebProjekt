@@ -117,7 +117,7 @@ class Database {
 //        $r=array();
 //        mysqli_stmt_bind_result($sql,$r['fname'],$r['sname'],$r['folder']);
 //        $this->data=mysqli_stmt_fetch($sql);
-        $sql = "SELECT Eesnimi, Perenimi, Kataloog FROM Markmosk_kasutaja WHERE Epost='$m' AND Parool='$p'";
+        $sql = "SELECT Eesnimi, Perenimi, Kataloog, roll FROM Markmosk_kasutaja WHERE Epost='$m' AND Parool='$p'";
         $result = mysqli_query($this->connection, $sql);
         $row = mysqli_fetch_assoc($result);
         $this->data=$row;
@@ -127,9 +127,10 @@ class Database {
         $sql = "SELECT Kataloog FROM Markmosk_kasutaja WHERE Epost='$this->email'";
         $result= mysqli_query($this->connection, $sql);
         $row = mysqli_fetch_row($result);
+//        chmod('/home/mmozniko/public_html/img/galerii' ,0777);
         mkdir('/home/mmozniko/public_html/img/galerii/'.$row[0] , 0777, true);
-        chmod('/home/mmozniko/public_html/img/galerii/'.$row[0] ,0777);
- //       print_r($row);
+//        chmod('/home/mmozniko/public_html/img/galerii/'.$row[0] ,0777);
+//       print_r($row);
     }
     private function location(){
         $this->_connect();

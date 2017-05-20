@@ -2,6 +2,11 @@
 
 if (isset($_COOKIE["galerii"])){
     $directory="img/galerii/".$_SESSION[$_COOKIE["galerii"]][3];
+} elseif (isset($_GET['fold'])){
+    $directory="img/galerii/".$_GET['fold'];
+    setcookie("galeriiview",$_GET['fold'], time() + 60);
+} elseif (isset($_COOKIE["galeriiview"])){
+    $directory="img/galerii/".$_COOKIE["galeriiview"];
 } else
     $directory = "img/galerii/9074b5ab3efe87a10d8cb9b62de76338";
 
@@ -18,7 +23,9 @@ $filecount=count($files);
 
 if (!empty($_GET['addim'])){
     $i=$_GET['addim'];
-} else{
+} elseif ($filecount == 1){
+    $i = 1;
+} else {
     $i = 2;
 }
 if ($filecount != 0){
