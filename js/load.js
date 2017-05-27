@@ -11,11 +11,7 @@ $(document).ready(function(){
         e.preventDefault();
     });
 });
-window.onload = function () {
-    if (window.location.href.match('index.php') !== null) {
-    }
-    ;
     /**
      * Created by marko on 23/04/2017.
      */
-}
+

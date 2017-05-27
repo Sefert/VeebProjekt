@@ -1,44 +1,12 @@
 <?php
+    require_once('functions.php');
+
     if (isset($_POST["Register"])) {
-        if (empty($_POST["surname"]) || empty($_POST["forname"]) || empty($_POST["password"]) || empty($_POST["password2"]) || empty($_POST["mail"])) {
-            $prompt = "Kõikide väljade täitmine on kohustuslik!!";
-        } else {
-            if (preg_match("%@%",$_POST["mail"])) {
-                require_once ("db/Database.php");
-                $data = new Database();
-                $data->_checkData(htmlspecialchars($_POST["mail"]),htmlspecialchars($_POST["password"]));
-                $data=$data->_getMailBool();
-//                print_r($data);
-                if ($data){
-                    $prompt = "Antud e-post on juba kasutusel!!";
-                } else {
-                    if (strlen($_POST["password"]) <= 5) {
-                        $prompt = "Sisestatud paroolid on liiga lühikesed!!";
-                    } else {
-                        if ($_POST["password"] != $_POST["password2"]) {
-                            $prompt = "Sisestatud paroolid ei kattu!!";
-                        } else {
-                            $prompt = "Registreeritud!";
-                            include('session.php');
-                        }
-                    }
-                }
-            } else {
-                $prompt = "E-posti aadress on vigane!!";
-            }
-        }
+        $prompt=testField();
     }
     if (isset($_POST["Login"])) {
-        require_once ("db/Database.php");
-        $data = new Database();
-        $data->_checkData(htmlspecialchars($_POST["mail"]),htmlspecialchars($_POST["password"]));
-        $data=$data->_getcheckDataBool();
-        if (!$data)
-            $prompt = "Kasutaja või parool vale!!";
-        else
-            include('session.php');
+        $prompt=testLogin();
     }
-
 ?>
 <div id="move" class="center mid lisa">
     <form class="fpos" action="index.php" method="POST">

@@ -92,31 +92,15 @@ class Database {
         $this->_connect();
         $sql = "SELECT * FROM Markmosk_kasutaja ORDER BY Perenimi ASC";
         $result = mysqli_query($this->connection, $sql);
-        //$this->data=mysqli_fetch_assoc($result);
         while ($row = mysqli_fetch_assoc($result)) {
             $this->data[] = $row;
         }
-        //$result = $this->connection->query($sql);
-
-//        if ($result->num_rows > 0) {
-//            while($row = $result->fetch_assoc()) {
-//                $this->data= "id: " . $row["id"]. " - Nimi: " . $row["Eesnimi"]. " " . $row["Perenimi"]." Parool: " . $row["Parool"] . "  Email: " . $row["Epost"] . "<br>";
-//            }
-//        } else {
-//            echo "0 results";
-//        }
         $this->_disconnect();
     }
     private function identify(){
         $this->_connect();
         $m=mysqli_real_escape_string($this->connection,$this->email);
         $p=mysqli_real_escape_string($this->connection,SHA1($this->password));
-//        $sql=mysqli_prepare($this->connection,"SELECT Eesnimi, Perenimi, Kataloog FROM Markmosk_kasutaja WHERE Epost= ? AND Parool= ?");
-//        mysqli_stmt_bind_param($sql,"ss",$m,$p);
-//        mysqli_stmt_execute($sql);
-//        $r=array();
-//        mysqli_stmt_bind_result($sql,$r['fname'],$r['sname'],$r['folder']);
-//        $this->data=mysqli_stmt_fetch($sql);
         $sql = "SELECT Eesnimi, Perenimi, Kataloog, roll FROM Markmosk_kasutaja WHERE Epost='$m' AND Parool='$p'";
         $result = mysqli_query($this->connection, $sql);
         $row = mysqli_fetch_assoc($result);

@@ -23,13 +23,11 @@ function subtract(i) {
     console.log("left");
     var variableToSend = parseInt(i)-1;
     console.log(i);
-    // $.post('galerii.php', {i: variableToSend});
     document.location = 'http://enos.itcollege.ee/~mmozniko/index.php?page=galerii&addim='+variableToSend;
 }
 function add(i) {
     console.log("right");
     var variableToSend = parseInt(i)+1;
     console.log(i);
-    // $.post('galerii.php', {i: variableToSend});
     document.location = 'http://enos.itcollege.ee/~mmozniko/index.php?page=galerii&addim='+variableToSend;
 }
