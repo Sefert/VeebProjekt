@@ -151,3 +151,11 @@ a:hover{
     height: 200px;
     float: right;
 }
+.autoheight{
+    overflow-y:scroll;
+}
+.txt {
+    margin:2px;
+    font-family: "Calibri", "Times New Roman";
+    color: white;
+}

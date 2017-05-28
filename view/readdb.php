@@ -25,6 +25,6 @@ function create_table(array $dataArr) {
         $html .= '</tr>';
     }
     $html .= '</table>';
-    echo "<div class='center mid lisa'>" . $html . "</div>";
+    echo "<div class='center mid autoheight lisa'>" . $html . "</div>";
 }
 

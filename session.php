@@ -8,7 +8,7 @@ if(!isset($_SESSION)){
 }
 
 if (!isset($_COOKIE["galerii"])) {
-    setcookie("galerii",$_POST['mail'], time() + 60);
+    setcookie("galerii",$_POST['mail'], time() + 10*60);
     if (isset($_POST['Register'])){
         $fname = htmlspecialchars($_POST['forname']);
         $lname = htmlspecialchars($_POST['surname']);
@@ -21,7 +21,7 @@ if (!isset($_COOKIE["galerii"])) {
         $folder = $folder->_getIdentify();
         $_SESSION[$mail]=array($fname, $lname, $mail, $folder['Kataloog'], $folder['roll'],$_SERVER['REMOTE_ADDR'],time(),time()+60);
         if (!empty($_SESSION[$mail])){
-            $info=$mail.'|'.$_SERVER['REMOTE_ADDR'].'|'.time();
+            $info=$mail.'|'.$_SERVER['REMOTE_ADDR'].'|'.date(DATE_RFC2822);
             $write=new ReadWrite();
             $write->_setFile('log.txt',$info);
             echo "<script> document.location.assign('http://enos.itcollege.ee/~mmozniko/index.php?page=galerii'); </script>";
@@ -34,7 +34,7 @@ if (!isset($_COOKIE["galerii"])) {
         $login = $login->_getIdentify();
         $_SESSION[$mail]=array($login['Eesnimi'], $login['Perenimi'], $mail, $login['Kataloog'], $login['roll'],$_SERVER['REMOTE_ADDR'], time(),time()+60);
         if (!empty($_SESSION[$mail])) {
-            $info = $mail . '|' . $_SERVER['REMOTE_ADDR'] . '|' . time();
+            $info=$mail.'|'.$_SERVER['REMOTE_ADDR'].'|'.date(DATE_RFC2822);
             $write = new ReadWrite();
             $write->_setFile('log.txt', $info);
             echo "<script> document.location.assign('http://enos.itcollege.ee/~mmozniko/index.php?page=galerii'); </script>";

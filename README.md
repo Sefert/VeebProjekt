@@ -31,6 +31,8 @@ USE test;<br />
 UPDATE Markmosk_kasutaja SET roll = 'admin' WHERE Kasutaja_ID = 45;<br />
 Lisatud admini rida tabelisse ja käsitsi SQL terminalist. Ainult admin näeb kogu andmebaasi sisu.<br />
 Lisatud süsteem ,kus kasutajale antakse unikaalne link tema galerii jagamiseks ja lehele tulijad saavad vaadata just kasutaja poolt jagatud galeriid.<br />
-Testimiseks kasutajanimi/parool: admin -> mm@mm.ee/password ,  kasutaja -> nn@nn.ee/password
+Testimiseks kasutajanimi/parool: admin -> mm@mm.ee/password ,  kasutaja -> nn@nn.ee/password<br />
 /27.05.2016/<br />
 Viidud asju funktsioonidesse ja logout algus<br />
+/28.05.2016/<br />
+Logi vaatamine, välja logimine<br />

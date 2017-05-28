@@ -64,12 +64,16 @@ function directory(){
     } elseif (isset($_COOKIE["galeriiview"])){
         $directory="img/galerii/".$_COOKIE["galeriiview"];
     } else
-        $directory = "img/galerii/9074b5ab3efe87a10d8cb9b62de76338";
+        $directory = "img/galerii/default";
     return $directory;
 }
 function geti($filecount){
     if (!empty($_GET['addim'])){
         $i=$_GET['addim'];
+        if ($i<0)
+            $i=1;
+        elseif ($i>$filecount)
+            $i=$filecount;
     } elseif ($filecount == 1){
         $i = 1;
     } else {

@@ -19,17 +19,23 @@ if (isset($_GET['page']) && $_GET['page']!=""){
     $page=htmlspecialchars($_GET['page']);
 }
 
+if (isset($_POST['Logout'])) {
+    destroy();
+    unset($_COOKIE['galerii']);
+    setcookie("galerii",$_POST['mail'], time()-3600);
+    $page = "galerii";
+}
+
 if (isset($_COOKIE['galerii'])){
     $session_id=$_COOKIE['galerii'];
-    if ($_SERVER['REMOTE_ADDR'] != $_SESSION[$_COOKIE['galerii']][5]){
-        $page = "galerii";
-        destroy();
+    if (!isset($_POST['Logout'])) {
+        if ($_SERVER['REMOTE_ADDR'] != $_SESSION[$_COOKIE['galerii']][5]) {
+            $page = "galerii";
+            destroy();
+        }
     }
 }
-if (isset($_POST['Logout'])) {
-    $page = "galerii";
-    destroy();
-}
+
 if (isset($_POST['Register']) || isset($_POST['Login'])){
     $page = $_POST['switch'];
 }
@@ -43,7 +49,7 @@ if (isset($_POST['UpPic'])){
         require_once ("functions.php");
         $prompt=uppic("filetoupload",$_COOKIE['galerii']);
         foreach ($prompt as $value)
-            print $value;
+            print '<p class="txt">'. $value . '</p>';;
 }
 switch($page){
     case "lisa":
@@ -62,6 +68,9 @@ switch($page){
         break;
     case "loginkasutaja":
         include("view/lisapildid.php");
+        break;
+    case "loginlogi":
+        include("view/logi.php");
         break;
     default:
         include('view/galerii.php');

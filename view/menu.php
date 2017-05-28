@@ -10,14 +10,13 @@
                 <div class="div"></div>
                 <div class="headerdiv"><a href="?page=loend">LOEND</a></div>
                 <div class="div"></div>
-                <div class="headerdiv"><a href="?page=loend">LOGI</a></div>
+                <div class="headerdiv"><a href="?page=logi">LOGI</a></div>
              <?php endif;?>
         <?php endif;?>
         <?php if (isset($_COOKIE["galerii"])):?>
-            <form action="logiloend.php" method="post">
-                <button class="headerdiv button noborder" type="submit" name="logout">LOGOUT</button>
-            </form>
+            <form style="display: none;" action="index.php" method="post" id="form2"></form>
+            <button class="headerdiv button noborder" style="margin-left:-5px;width: 150px;height: 50px" form="form2" type="submit" name="Logout">LOGOUT</button>
             <div id="namelocation" class="div"></div>
-            <div id="namelocation"><a style="color: white" href="?page=kasutaja"><?php echo $_SESSION[$session_id][0]." ".$_SESSION[$session_id][1]?></a></div>
+            <div id="namelocation" ><a style="color: white" href="?page=kasutaja"><?php echo $_SESSION[$session_id][0]." ".$_SESSION[$session_id][1]?><strong id="time"></strong></a></div>
         <?php endif; ?>
 </div>
