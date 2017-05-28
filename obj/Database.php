@@ -112,7 +112,7 @@ class Database {
         $result= mysqli_query($this->connection, $sql);
         $row = mysqli_fetch_row($result);
 //        chmod('/home/mmozniko/public_html/img/galerii' ,0777);
-        mkdir('/home/mmozniko/public_html/img/galerii/'.$row[0] , 0777, true);
+        mkdir('img/galerii/'.$row[0] , 0777, true);
 //        chmod('/home/mmozniko/public_html/img/galerii/'.$row[0] ,0777);
 //       print_r($row);
     }

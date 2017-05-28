@@ -24,7 +24,7 @@ class Upload
         $allowedTypes = array("image/gif", "image/jpeg", "image/png", "image/pjpeg");
 
         for ($i=0;$i<count($_FILES[$this->name]['name']);$i++) {
-            if (is_uploaded_file($_FILES[$this->name]["name"][$i]))
+            if (isset($_FILES[$this->name]["name"][$i]))
                 $extension = pathinfo($_FILES[$this->name]["name"][$i])['extension'];
 //            $exp = explode(".", $_FILES[$this->name]["name"][$i]);
 //            $extension = end($exp);
@@ -38,14 +38,14 @@ class Upload
                     $this->prompt[$i] = "Esinevad errorid";
                 } else {
                     // vigu ei ole
-                    if (file_exists("/home/mmozniko/public_html/img/galerii/" . $this->folder . "/" . $_FILES[$this->name]["name"][$i])) {
+                    if (file_exists("img/galerii/" . $this->folder . "/" . $_FILES[$this->name]["name"][$i])) {
                         // fail olemas ära uuesti lae, tagasta failinimi
                         $_SESSION['notices'][] = $_FILES[$this->name]["name"][$i] . " juba eksisteerib. ";
-                        $this->prompt[$i] = "Fail juba olemas:/home/mmozniko/public_html/img/galerii/" . $this->folder . "/" . $_FILES[$this->name]["name"][$i];
+                        $this->prompt[$i] = "Fail juba olemas:img/galerii/" . $this->folder . "/" . $_FILES[$this->name]["name"][$i];
                     } else {
                         // kõik ok, aseta pilt
-                        move_uploaded_file($_FILES[$this->name]["tmp_name"][$i], "/home/mmozniko/public_html/img/galerii/" . $this->folder . "/" . $_FILES[$this->name]["name"][$i]);
-                        $this->prompt[$i] = "Pildid asetatud:/home/mmozniko/public_html/img/galerii/" . $this->folder . "/" . $_FILES[$this->name]["name"][$i];
+                        move_uploaded_file($_FILES[$this->name]["tmp_name"][$i], "img/galerii/" . $this->folder . "/" . $_FILES[$this->name]["name"][$i]);
+                        $this->prompt[$i] = "Pildid asetatud:img/galerii/" . $this->folder . "/" . $_FILES[$this->name]["name"][$i];
                     }
                 }
             } else {

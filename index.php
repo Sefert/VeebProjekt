@@ -46,10 +46,18 @@ if (isset($_COOKIE['galerii']) && !isset($_POST['Login'])){
     }
 }
 if (isset($_POST['UpPic'])){
-        require_once ("functions.php");
-        $prompt=uppic("filetoupload",$_COOKIE['galerii']);
-        foreach ($prompt as $value)
-            print '<p class="txt">'. $value . '</p>';;
+    require_once ("functions.php");
+    $prompt=uppic("filetoupload",$_COOKIE['galerii']);
+    foreach ($prompt as $value)
+        print '<p class="txt">'. $value . '</p>';;
+}
+if (isset($_POST['DelPic'])){
+    $page="loginfiles";
+}
+if (isset($_POST['delete'])){
+    $page="galerii";
+//    print_r($_POST);
+    delete();
 }
 switch($page){
     case "lisa":
@@ -71,6 +79,9 @@ switch($page){
         break;
     case "loginlogi":
         include("view/logi.php");
+        break;
+    case "loginfiles":
+        include("view/files.php");
         break;
     default:
         include('view/galerii.php');

@@ -17,6 +17,6 @@
             <form style="display: none;" action="index.php" method="post" id="form2"></form>
             <button class="headerdiv button noborder" style="margin-left:-5px;width: 150px;height: 50px" form="form2" type="submit" name="Logout">LOGOUT</button>
             <div id="namelocation" class="div"></div>
-            <div id="namelocation" ><a style="color: white" href="?page=kasutaja"><?php echo $_SESSION[$session_id][0]." ".$_SESSION[$session_id][1]?><strong id="time"></strong></a></div>
+            <div id="namelocation" ><a style="color: white" href="?page=kasutaja"><?php echo $_SESSION[$session_id][0]." ".$_SESSION[$session_id][1]?>    <strong id="time"></strong></a></div>
         <?php endif; ?>
 </div>

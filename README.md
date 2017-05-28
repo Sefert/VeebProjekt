@@ -36,3 +36,7 @@ Testimiseks kasutajanimi/parool: admin -> mm@mm.ee/password ,  kasutaja -> nn@nn
 Viidud asju funktsioonidesse ja logout algus<br />
 /28.05.2016/<br />
 Logi vaatamine, välja logimine<br />
+/28.05.2016/<br />
+Pildi kustutamine<br />
+Bug:ühegi pildi lisamisel väike error<br />
+Turvaauk:gen img kataloogide õigused avatud ja pilte saab kustutada igaüks. Ei hakanud igaks juhuks tegema oma paroolidega ssh connecti<br />

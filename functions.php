@@ -102,3 +102,18 @@ function destroy(){
     unset($_SESSION[$_COOKIE['galerii']]);
     echo "<script> document.location.assign('http://enos.itcollege.ee/~mmozniko/index.php?page=galerii'); </script>";
 }
+function delpic($f){
+    $folder = $_SESSION[$f][3];
+    require_once("obj/Pictureloader.php");
+    $files=new Pictureloader("img/galerii/".$folder);
+    $files=$files->getPictures();
+    return $files;
+}
+function delete(){
+    foreach ($_POST as $key => $value){
+        $link="img/galerii/".$_SESSION[$_COOKIE["galerii"]][3]."/".$value;
+        if (file_exists ( $link ))
+            if (is_file ( $link ))
+                unlink($link);
+    }
+}
