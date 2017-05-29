@@ -12,6 +12,11 @@ require_once("functions.php");
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
+if (isset($_COOKIE['galerii']) && !isset($_SESSION[$_COOKIE['galerii']][5])){
+//    echo $_COOKIE['galerii'].$_SESSION[$_COOKIE['galerii']][5];
+    echo "SIIIIIIIN";
+    unset($_COOKIE['galerii']);
+}
 
 if (!isset($page))
     $page="galerii";
@@ -27,8 +32,7 @@ if (isset($_POST['Logout'])) {
 }
 
 if (isset($_COOKIE['galerii'])){
-    $session_id=$_COOKIE['galerii'];
-    if (!isset($_POST['Logout'])) {
+    if (!isset($_POST['Logout']) && isset ($_SESSION[$_COOKIE['galerii']][5])) {
         if ($_SERVER['REMOTE_ADDR'] != $_SESSION[$_COOKIE['galerii']][5]) {
             $page = "galerii";
             destroy();
@@ -39,10 +43,10 @@ if (isset($_COOKIE['galerii'])){
 if (isset($_POST['Register']) || isset($_POST['Login'])){
     $page = $_POST['switch'];
 }
-if (isset($_COOKIE['galerii']) && !isset($_POST['Login'])){
-    $session_id=$_COOKIE['galerii'];
-    if (isset($_GET['page'])){
-        $page="login".$_GET['page'];
+if (isset($_COOKIE['galerii']) && !isset($_POST['Login'])) {
+    $session_id = $_COOKIE['galerii'];
+    if (isset($_GET['page'])) {
+        $page = "login" . $_GET['page'];
     }
 }
 if (isset($_POST['UpPic'])){
@@ -59,6 +63,7 @@ if (isset($_POST['delete'])){
 //    print_r($_POST);
     delete();
 }
+
 switch($page){
     case "lisa":
         include("view/lisa.php");

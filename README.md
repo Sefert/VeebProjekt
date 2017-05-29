@@ -1,4 +1,6 @@
 Projekt testimiseks : <a style='color blue;' href=http://enos.itcollege.ee/~mmozniko/index.php>http://enos.itcollege.ee/~mmozniko/</a><br />
+Testimiseks kasutajanimi/parool: admin -> kasutaja: mm@mm.ee parool : password ,  user -> nn@nn.ee/password<br />
+Saab ka ise registreerida, aga osa funktsionaalsust jääb nägegemata kui mitte logida sisse andministraatorina. Andmed üleval!
 /15.04.2016/<br />
 MVC variandiga fotogalerii algus.<br />
 /30.04.2016/<br />
@@ -40,3 +42,5 @@ Logi vaatamine, välja logimine<br />
 Pildi kustutamine<br />
 Bug:ühegi pildi lisamisel väike error<br />
 Turvaauk:gen img kataloogide õigused avatud ja pilte saab kustutada igaüks. Ei hakanud igaks juhuks tegema oma paroolidega ssh connecti<br />
+/29.05.2016/<br />
+Cookie hävitamine browseri sulgemisel<br />

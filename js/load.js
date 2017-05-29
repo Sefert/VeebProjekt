@@ -26,7 +26,12 @@ function checkTime(i) {
     if (i < 10) {i = "0" + i};
     return i;
 }
-    /**
-     * Created by marko on 23/04/2017.
-     */
-
+/**
+ * Created by marko on 23/04/2017.
+ */
+// $(document).ready(function(){
+//     $('#onenter').keypress(function(e){
+//         if(e.keyCode==13)
+//             $('#onenter').click();
+//     });
+// });
