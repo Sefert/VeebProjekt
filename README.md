@@ -1,6 +1,7 @@
 Projekt testimiseks : <a style='color blue;' href=http://enos.itcollege.ee/~mmozniko/index.php>http://enos.itcollege.ee/~mmozniko/</a><br />
 Testimiseks kasutajanimi/parool: admin -> kasutaja: mm@mm.ee parool : password ,  user -> nn@nn.ee/password<br />
-Saab ka ise registreerida, aga osa funktsionaalsust jääb nägegemata kui mitte logida sisse andministraatorina. Andmed üleval!
+Saab ka ise registreerida, aga osa funktsionaalsust jääb nägemata kui mitte logida sisse andministraatorina. Andmed üleval!
+Sessioon kestab testimiseks seadingutega 10 minutit ja link sessioon 60 sekundit <br />
 /15.04.2016/<br />
 MVC variandiga fotogalerii algus.<br />
 /30.04.2016/<br />
